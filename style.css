@@ -1,0 +1,28 @@
+/* Estilos personalizados para complementar o Tailwind */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+/* ESTILOS PARA A IMAGEM ATUALIZADOS */
+.image-container {
+    width: 100%;
+    height: 180px; /* A altura foi reduzida de 250px para 180px */
+    border-radius: 12px;
+    overflow: hidden; /* Isso esconde o resto da imagem que "vaza" para fora */
+}
+
+.love-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Redimensiona a imagem para cobrir o container, cortando o excesso */
+    object-position: center 35%; /* Tenta manter o centro da foto visível após o corte */
+}
