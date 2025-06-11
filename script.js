@@ -14,7 +14,6 @@ function updateCounter(elementId, startDate) {
     const now = new Date();
     const diff = now - startDate;
 
-    // Se a data ainda não chegou, exibe uma mensagem
     if (diff < 0) {
         const counterElement = document.getElementById(elementId);
         if(counterElement) {
@@ -30,13 +29,16 @@ function updateCounter(elementId, startDate) {
 
     const counterElement = document.getElementById(elementId);
     if(counterElement) {
-        // Nota: As classes do Tailwind foram movidas para o HTML para manter a separação de responsabilidades.
-        // A formatação agora é aplicada diretamente no HTML e o JS apenas insere os valores.
+        // ATUALIZADO: O texto é dividido em dois 'spans' para controlar a quebra de linha.
         counterElement.innerHTML = `
-            <span class="font-semibold text-rose-800">${days}</span> dias, 
-            <span class="font-semibold text-rose-800">${hours}</span> horas, 
-            <span class="font-semibold text-rose-800">${minutes}</span> minutos e 
-            <span class="font-semibold text-rose-800">${seconds}</span> segundos
+            <span class="whitespace-nowrap">
+                <span class="font-semibold text-rose-800">${days}</span> dias, 
+                <span class="font-semibold text-rose-800">${hours}</span> horas,
+            </span>
+            <span class="whitespace-nowrap">
+                <span class="font-semibold text-rose-800">${minutes}</span> minutos e 
+                <span class="font-semibold text-rose-800">${seconds}</span> segundos
+            </span>
         `;
     }
 }
@@ -54,11 +56,7 @@ function startCounters() {
     }
 }
 
-// Garante que o script rode após o carregamento da página
-window.onload = function() {
-    // Atualiza os contadores a cada segundo
-    setInterval(startCounters, 1000);
-    
-    // Roda uma vez imediatamente para não haver atraso na exibição
+document.addEventListener('DOMContentLoaded', function() {
     startCounters();
-};
+    setInterval(startCounters, 1000);
+});
