@@ -59,4 +59,18 @@ function startCounters() {
 document.addEventListener('DOMContentLoaded', function() {
     startCounters();
     setInterval(startCounters, 1000);
+    
+    // LÓGICA DA MÚSICA ATUALIZADA
+    const music = document.getElementById('background-music');
+    const musicToggle = document.getElementById('music-toggle');
+
+    musicToggle.addEventListener('click', function() {
+        if (music.paused) {
+            music.play();
+            musicToggle.classList.add('playing'); // Adiciona classe para feedback visual
+        } else {
+            music.pause();
+            musicToggle.classList.remove('playing'); // Remove a classe
+        }
+    });
 });
