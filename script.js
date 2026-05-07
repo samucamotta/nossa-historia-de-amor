@@ -3,7 +3,17 @@
 // Formato: Ano, Mês (janeiro=0, fevereiro=1...), Dia, Hora, Minuto, Segundo
 const datingStartDate = new Date(2023, 9, 8, 15, 30, 0); // Exemplo: 15 de Janeiro de 2022, às 20:00
 const firstKissDate = new Date(2023, 7, 26, 23, 30, 0);   // Exemplo: 16 de Janeiro de 2022, às 22:30
-const engagementDate = new Date(2024, 9, 8, 8, 0, 0);  // Exemplo: 12 de Junho de 2024, às 18:00
+const engagementDate = new Date(2024, 9, 5, 8, 0, 0);  // Exemplo: 12 de Junho de 2024, às 18:00
+
+/**
+ * Formata uma data para o padrão português brasileiro (ex: 26 de agosto de 2023)
+ * @param {Date} date - O objeto Date a ser formatado.
+ * @returns {string} A data formatada em português brasileiro.
+ */
+function formatDatePT(date) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return date.toLocaleDateString('pt-BR', options);
+}
 
 /**
  * Atualiza um elemento do contador com o tempo decorrido desde uma data de início.
@@ -27,9 +37,11 @@ function updateCounter(elementId, startDate) {
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
+    const formattedDate = formatDatePT(startDate);
+
     const counterElement = document.getElementById(elementId);
     if(counterElement) {
-        // ATUALIZADO: O texto é dividido em dois 'spans' para controlar a quebra de linha.
+        // ATUALIZADO: Exibe o contador e a data pequena abaixo
         counterElement.innerHTML = `
             <span class="whitespace-nowrap">
                 <span class="font-semibold text-rose-800">${days}</span> dias, 
@@ -39,6 +51,7 @@ function updateCounter(elementId, startDate) {
                 <span class="font-semibold text-rose-800">${minutes}</span> minutos e 
                 <span class="font-semibold text-rose-800">${seconds}</span> segundos
             </span>
+            <div class="text-blue-600 text-sm mt-2">📅 ${formattedDate}</div>
         `;
     }
 }
