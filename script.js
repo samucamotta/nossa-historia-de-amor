@@ -41,7 +41,7 @@ function updateCounter(elementId, startDate) {
 
     const counterElement = document.getElementById(elementId);
     if(counterElement) {
-        // ATUALIZADO: Exibe o contador e a data pequena abaixo
+        // Exibe o contador e a data pequena abaixo
         counterElement.innerHTML = `
             <span class="whitespace-nowrap">
                 <span class="font-semibold text-rose-800">${days}</span> dias, 
